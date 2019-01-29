@@ -1,0 +1,60 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 26
+        versionCode 10
+        versionName "1.0"
+
+        //------------------------------打包后aar的名字------------------------------
+        android.libraryVariants.all { variant ->
+            if(variant.name.equalsIgnoreCase("release")) {
+                variant.outputs.all { output ->
+                    def f = output.outputFileName
+                    if (f != null && f.endsWith('.aar')) {
+                        def fileName = "myokhttp-${defaultConfig.versionName}.aar"
+                        output.outputFileName = fileName
+                    }
+                }
+            }
+        }
+
+        //------------------------------end---------------------------------------
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.squareup.okhttp3:okhttp:3.12.1'
+    compile 'com.squareup.okio:okio:2.1.0'
+    compile 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+    //fastjson
+    compile 'com.alibaba:fastjson:1.2.49'
+}
+
+/*buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+    }
+}*/
+apply from: 'bintray.gradle'
