@@ -33,7 +33,7 @@ public class HttpRequestCallback {
     private Request.Builder  requestBuilder   = new Request.Builder();
 
     public void addHeader(String key, String value) {
-        Utils.getInstance().addHeader(okHttpConnection, requestBuilder, key, value);
+        Utils.getInstance().addHeader(requestBuilder, key, value);
     }
 
     /**

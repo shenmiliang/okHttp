@@ -30,7 +30,7 @@ public class Utils {
         return instance;
     }
 
-    public void addHeader(OKHttpConnection okHttpConnection, Request.Builder requestBuilder, String key, String value) {
+    public void addHeader(Request.Builder requestBuilder, String key, String value) {
         requestBuilder.addHeader(key, value);
     }
 

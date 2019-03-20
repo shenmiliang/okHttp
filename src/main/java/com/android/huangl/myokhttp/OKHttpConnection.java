@@ -62,7 +62,7 @@ public class OKHttpConnection {
             requestBuilder.method("POST", AddParams(url, params, describe, files, listening)); //添加参数
         } else { //get方法
             if (Utils.debug)
-                Log.d(TAG, describe + ":" + url);
+                Log.d(TAG, describe + " GET: " + url);
             requestBuilder.method("GET", null);
         }
         return requestBuilder.build();
@@ -76,7 +76,7 @@ public class OKHttpConnection {
         MultipartBody.Builder requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM);
         if (params != null) {
             StringBuffer b = new StringBuffer();
-            b.append(describe).append(url).append("?");
+            b.append(describe).append(" POST: ").append(url).append("?");
             Iterator it = params.entrySet().iterator();
             while (it.hasNext()) {
                 java.util.Map.Entry entry = (java.util.Map.Entry) it.next();
